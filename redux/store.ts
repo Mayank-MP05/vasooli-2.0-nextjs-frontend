@@ -3,7 +3,7 @@ import uiControlsSlice from "./ui-controls-reducer";
 
 const store = configureStore({
   reducer: {
-    icon: uiControlsSlice.reducer,
+    uiControls: uiControlsSlice.reducer,
   },
 });
 
