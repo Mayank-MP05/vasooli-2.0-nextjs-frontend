@@ -2,10 +2,20 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { useDispatch } from "react-redux";
+import { uiControlsActions } from "@/redux/ui-controls-reducer";
+const { RxUpdateTheme } = uiControlsActions;
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const dispatch = useDispatch();
+
+  const toggleThemeInRedux = () => {
+    console.log("toggle theme in redux");
+    dispatch(RxUpdateTheme("black"));
+  };
+
   return (
     <>
       <Head>
@@ -15,6 +25,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>Hellu from next js</div>
+      <button onClick={toggleThemeInRedux}> Toggle Theme </button>
     </>
   );
 }
