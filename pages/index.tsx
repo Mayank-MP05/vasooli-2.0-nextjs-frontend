@@ -7,6 +7,7 @@ import { uiControlsActions } from "@/redux/ui-controls-reducer";
 import APIClient from "@/utils/api-client";
 import ResponsiveAppBar from "@/components/common/top-navbar";
 const { RxUpdateTheme } = uiControlsActions;
+import Button from "@mui/material/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,8 +34,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <ResponsiveAppBar />
       <button onClick={toggleThemeInRedux}> Toggle Theme </button>
+      <Button color="secondary" onClick={toggleThemeInRedux}>
+        MUI Button
+      </Button>
     </>
   );
 }
