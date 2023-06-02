@@ -64,7 +64,6 @@ const APIClient = ({
     })
     .finally(() => {
       logger({
-        logType: logTypeEnums.ERR,
         msg: "/route finally",
       });
       finallyFn();

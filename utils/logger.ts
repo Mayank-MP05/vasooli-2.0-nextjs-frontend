@@ -12,7 +12,7 @@ export enum logTypeEnums {
 
 // TYPE-DEC:
 type loggerParamsTypes = {
-  logType: logTypeEnums;
+  logType?: logTypeEnums | undefined;
   msg: any;
 };
 
