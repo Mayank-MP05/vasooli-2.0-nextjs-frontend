@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { useDispatch } from "react-redux";
 import { uiControlsActions } from "@/redux/ui-controls-reducer";
+import APIClient from "@/utils/api-client";
 const { RxUpdateTheme } = uiControlsActions;
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,8 +13,15 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const toggleThemeInRedux = () => {
-    console.log("toggle theme in redux");
-    dispatch(RxUpdateTheme("black"));
+    APIClient({
+      route: "/notif/read/2",
+      method: "GET",
+      payload: {},
+      headers: {},
+      successFn: () => {},
+      errorFn: (err) => {},
+      finallyFn: () => {},
+    });
   };
 
   return (

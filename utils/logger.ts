@@ -1,24 +1,22 @@
 // TYPE-DEC:
-enum logTypeEnums {
+export enum logTypeEnums {
   "" = "",
   INFO = "INFO",
   LOOK = "LOOK",
   TABLE = "TABLE",
   REQ = "REQ",
   RES = "RES",
+  ERR = "ERR",
   OTHER = "OTHER",
 }
 
 // TYPE-DEC:
-type newCustomConsoleLogParamsTypes = {
+type loggerParamsTypes = {
   logType: logTypeEnums;
   msg: any;
 };
 
-const newCustomConsoleLog = ({
-  logType,
-  msg,
-}: newCustomConsoleLogParamsTypes) => {
+const logger = ({ logType, msg }: loggerParamsTypes) => {
   if (logType === logTypeEnums.INFO) {
     console.log(
       "%cINFO",
@@ -40,13 +38,19 @@ const newCustomConsoleLog = ({
   } else if (logType === logTypeEnums.REQ) {
     console.log(
       "%cREQ",
-      "background: #d33436; color: white; padding: 2px 6px; border-radius: 4px;",
+      "background: #3F51B5; color: white; padding: 2px 6px; border-radius: 4px;",
       msg
     );
   } else if (logType === logTypeEnums.RES) {
     console.log(
       "%cRES",
       "background: #006400; color: white; padding: 2px 6px; border-radius: 4px;",
+      msg
+    );
+  } else if (logType === logTypeEnums.ERR) {
+    console.log(
+      "%cRES",
+      "background: #d33436; color: white; padding: 2px 6px; border-radius: 4px;",
       msg
     );
   } else {
@@ -57,3 +61,5 @@ const newCustomConsoleLog = ({
     );
   }
 };
+
+export default logger;
