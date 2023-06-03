@@ -124,15 +124,30 @@ export default function TransactionAddEditModal() {
               id="single-date-picker-id" // PropTypes.string.isRequired,
             /> */}
 
-            <FormLabel>Date: </FormLabel>
-
-            <Flatpickr
-              data-enable-time
-              value={date}
-              onChange={([date]) => {
-                setSelected(date);
+            {/* <FormLabel>Date: </FormLabel> */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                margin: "5px",
               }}
-            />
+            >
+              <InputLabel htmlFor="date-picker-id" style={{ fontSize: "10px" }}>
+                Date
+              </InputLabel>
+
+              <Flatpickr
+                id="date-picker-id"
+                style={{
+                  height: "45px",
+                }}
+                data-enable-time
+                value={date}
+                onChange={([date]) => {
+                  setSelected(date);
+                }}
+              />
+            </div>
           </RowDiv>
 
           <FormControlLabel

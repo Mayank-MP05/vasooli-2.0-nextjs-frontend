@@ -21,6 +21,8 @@ import {
 import TransactionCard from "@/components/transactions/transaction-card";
 import { RowDiv } from "@/components/common/styled-base-components";
 import TransactionAddEditModal from "@/components/transactions/transaction-add-edit-modal";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -71,8 +73,20 @@ export default function Home() {
               value={activeTab}
               onChange={handleChange}
             >
-              <Tab label="Transactions" />
-              <Tab label="Payment Requests" />
+              <Tab label="Transactions" style={{ textTransform: "none" }} />
+              <Tab label="Payment Requests" style={{ textTransform: "none" }} />
+              <Button
+                variant="contained"
+                startIcon={<AddCircleIcon />}
+                style={{
+                  textTransform: "none",
+                  fontWeight: "bold",
+                  color: "white",
+                  margin: "0 10px",
+                }}
+              >
+                Create
+              </Button>
             </Tabs>
           </Box>
         </RowDiv>
