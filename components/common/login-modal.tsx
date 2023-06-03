@@ -18,6 +18,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: "10px",
 };
 
 export default function UserAuthModal() {
@@ -28,15 +29,10 @@ export default function UserAuthModal() {
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <EditProfileBox />
-          {/* <LogInBox /> */}
+          {/* <EditProfileBox /> */}
+          <LogInBox />
           {/* <SignUpBox /> */}
         </Box>
       </Modal>
