@@ -20,10 +20,12 @@
     "axios": "^1.4.0",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
+    "flatpickr": "^4.6.13",
     "nanoid": "^4.0.2",
     "next": "13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-flatpickr": "^3.10.13",
     "react-redux": "^8.0.5",
     "typescript": "5.0.4"
   }

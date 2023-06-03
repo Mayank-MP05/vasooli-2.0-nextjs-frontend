@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import TransactionCard from "@/components/transactions/transaction-card";
 import { RowDiv } from "@/components/common/styled-base-components";
+import TransactionAddEditModal from "@/components/transactions/transaction-add-edit-modal";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -59,6 +60,7 @@ export default function Home() {
       <UserAuthModal />
 
       <Container style={{ marginTop: "10px" }}>
+        <TransactionAddEditModal />
         <RowDiv>
           <Pagination count={10} />
           <Box
