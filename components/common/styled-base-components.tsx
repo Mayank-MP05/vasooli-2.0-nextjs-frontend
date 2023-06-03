@@ -21,15 +21,19 @@ export const TxnCardRow = styled("div")`
 `;
 export const TxnCardCol = styled("div")`
   margin: 10px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
 export const AmtTxnCardCol = styled("div")`
   margin: 10px;
-  width: 100px;
-  height: 100%;
-  background: white;
-  color: black;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  background: black;
+  color: white;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 `;

@@ -15,12 +15,18 @@ import {
   TxnCardRow,
 } from "../common/styled-base-components";
 import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const TransactionCard = () => {
   return (
     <div>
-      <Card style={{ borderRadius: "10px", margin: "20px" }}>
+      <Card
+        style={{
+          borderRadius: "10px",
+          margin: "20px",
+          border: "2px solid black",
+        }}
+      >
         <CardActions>
           <TxnCardRow>
             <div style={{ marginLeft: "auto" }}>
@@ -64,7 +70,7 @@ const TransactionCard = () => {
               </TxnCardRow>
             </TxnCardCol>
             <AmtTxnCardCol>
-              <TxnCardRow>$100</TxnCardRow>
+              <Typography variant="h4"> $100</Typography>
             </AmtTxnCardCol>
           </TxnCardRow>
         </CardContent>
