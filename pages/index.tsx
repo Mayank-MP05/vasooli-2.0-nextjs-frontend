@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -9,13 +10,21 @@ import ResponsiveAppBar from "@/components/common/top-navbar";
 const { RxUpdateTheme } = uiControlsActions;
 import Button from "@mui/material/Button";
 import UserAuthModal from "@/components/common/login-modal";
-import { Container, Pagination, Box } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Container,
+  Pagination,
+  Tabs,
+  Tab,
+} from "@mui/material";
 import TransactionCard from "@/components/transactions/transaction-card";
-
+import { RowDiv } from "@/components/common/styled-base-components";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const dispatch = useDispatch();
+  const [activeTab, setActiveTab] = useState("Home");
 
   const toggleThemeInRedux = () => {
     APIClient({
@@ -24,9 +33,13 @@ export default function Home() {
       payload: {},
       headers: {},
       successFn: () => {},
-      errorFn: (err) => {},
+      errorFn: (err: any) => {},
       finallyFn: () => {},
     });
+  };
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setActiveTab(newValue);
   };
 
   return (
@@ -46,9 +59,27 @@ export default function Home() {
       <UserAuthModal />
 
       <Container style={{ marginTop: "10px" }}>
-        <Pagination count={10} />
+        <RowDiv>
+          <Pagination count={10} />
+          <Box
+            sx={{ marginLeft: "auto", borderBottom: 1, borderColor: "divider" }}
+          >
+            <Tabs
+              variant="scrollable"
+              value={activeTab}
+              onChange={handleChange}
+            >
+              <Tab label="Transactions" />
+              <Tab label="Payment Requests" />
+            </Tabs>
+          </Box>
+        </RowDiv>
 
         <Box style={{ marginTop: "10px" }}>
+          <TransactionCard />
+          <TransactionCard />
+          <TransactionCard />
+          <TransactionCard />
           <TransactionCard />
         </Box>
       </Container>
