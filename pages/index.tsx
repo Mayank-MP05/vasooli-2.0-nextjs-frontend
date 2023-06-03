@@ -22,6 +22,7 @@ import TransactionCard from "@/components/transactions/transaction-card";
 import { RowDiv } from "@/components/common/styled-base-components";
 import TransactionAddEditModal from "@/components/transactions/transaction-add-edit-modal";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import ConfirmDeleteModal from "@/components/transactions/confirm-delete-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -62,7 +63,7 @@ export default function Home() {
       <UserAuthModal />
 
       <Container style={{ marginTop: "10px" }}>
-        <TransactionAddEditModal />
+        <ConfirmDeleteModal />
         <RowDiv>
           <Pagination count={10} />
           <Box
