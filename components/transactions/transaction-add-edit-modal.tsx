@@ -21,6 +21,7 @@ import { FormLabel } from "@mui/material";
 import { Checkbox } from "@mui/material";
 import { FormControlLabel } from "@mui/material";
 
+import Autocomplete from "@mui/lab/Autocomplete";
 
 const style = {
   position: "absolute" as "absolute",
@@ -45,6 +46,7 @@ export default function TransactionAddEditModal() {
   const [date, setDate] = useState("");
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const options = ["Option 1", "Option 2", "Option 3"];
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
@@ -68,7 +70,7 @@ export default function TransactionAddEditModal() {
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <Typography
-            variant="h4"
+            variant="h5"
             component="p"
             style={{ marginBottom: "10px" }}
           >
@@ -144,6 +146,19 @@ export default function TransactionAddEditModal() {
             label="It is a payment request"
             labelPlacement="end"
           />
+
+          <Autocomplete
+            options={options}
+            renderInput={(params) => (
+              <TextField {...params} label="AutoComplete" />
+            )}
+          />
+
+          <RowDiv>
+            <Button color="success" variant="contained">
+              Save
+            </Button>
+          </RowDiv>
         </Box>
       </Modal>
     </div>
