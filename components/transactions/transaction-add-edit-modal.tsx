@@ -66,7 +66,7 @@ export default function TransactionAddEditModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Add new transaction</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <Typography

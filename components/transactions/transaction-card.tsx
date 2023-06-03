@@ -8,6 +8,7 @@ import {
   CardMedia,
   CardTitle,
   Typography,
+  Chip,
 } from "@mui/material";
 import {
   AmtTxnCardCol,
@@ -16,6 +17,11 @@ import {
 } from "../common/styled-base-components";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
+
+const chipStyles = {
+  margin: "0 5px",
+  borderRadius: "5px",
+};
 
 const TransactionCard = () => {
   return (
@@ -54,18 +60,22 @@ const TransactionCard = () => {
           <TxnCardRow>
             <TxnCardCol>
               <TxnCardRow>
-                <Typography variant="h6">Title: renting an house</Typography>
+                <Chip label="Title" color="primary" style={chipStyles} />
+                <Typography variant="h6">renting an house</Typography>
               </TxnCardRow>
               <TxnCardRow>
+                <Chip label="Description" color="primary" style={chipStyles} />
                 <Typography variant="p">
                   Description:Rent: The cost of renting a property, such as an
                   office space or a home.
                 </Typography>
               </TxnCardRow>
               <TxnCardRow>
-                <Typography variant="p">Category:Rent</Typography>
+                <Chip label="Category" color="primary" style={chipStyles} />
+                <Typography variant="p">Rent</Typography>
                 <Typography variant="p" style={{ marginLeft: "auto" }}>
-                  Date:06/11/2023
+                  <Chip label="Date" color="primary" style={chipStyles} />
+                  06/11/2023
                 </Typography>
               </TxnCardRow>
             </TxnCardCol>

@@ -64,6 +64,7 @@ export default function Home() {
 
       <Container style={{ marginTop: "10px" }}>
         <ConfirmDeleteModal />
+        <TransactionAddEditModal />
         <RowDiv>
           <Pagination count={10} />
           <Box

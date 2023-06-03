@@ -38,7 +38,7 @@ const ConfirmDeleteModal = () => {
   const onConfirm = () => {};
   return (
     <>
-      <Button onClick={handleOpenModal}>Open modal</Button>
+      <Button onClick={handleOpenModal}>Delete Confirmation</Button>
       <Dialog
         open={open}
         onClose={handleCloseModal}

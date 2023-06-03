@@ -31,8 +31,8 @@ export default function UserAuthModal() {
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          {/* <EditProfileBox /> */}
-          <LogInBox />
+          <EditProfileBox />
+          {/* <LogInBox /> */}
           {/* <SignUpBox /> */}
         </Box>
       </Modal>
