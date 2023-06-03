@@ -1,17 +1,23 @@
 import React from "react";
-import { TextField } from "@mui/material";
-import { Typography } from "@mui/material";
+import { TextField, Typography, Button } from "@mui/material";
 
 import { styled } from "@mui/system";
 const CustomFormInput = styled(TextField)`
   width: 100%;
   margin: 10px auto;
 `;
+const RowDiv = styled("div")`
+  width: 100%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const EditProfileBox = () => {
   return (
     <>
-      <Typography variant="h4" component="p">
+      <Typography variant="h4" component="p" style={{ marginBottom: "10px" }}>
         User details
       </Typography>
       <CustomFormInput
@@ -19,11 +25,9 @@ const EditProfileBox = () => {
         label="Email ID"
         variant="outlined"
       />
-      <CustomFormInput
-        id="outlined-basic"
-        label="Password"
-        variant="outlined"
-      />
+      <RowDiv>
+        <Button variant="contained">Log out</Button>
+      </RowDiv>
     </>
   );
 };

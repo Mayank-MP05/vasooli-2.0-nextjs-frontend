@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import EditProfileBox from "../user/edit-profile-box";
+import LogInBox from "../user/login-box";
+import SignUpBox from "../user/sign-up-box";
 
 const style = {
   position: "absolute" as "absolute",
@@ -34,6 +36,8 @@ export default function UserAuthModal() {
       >
         <Box sx={style}>
           <EditProfileBox />
+          {/* <LogInBox /> */}
+          {/* <SignUpBox /> */}
         </Box>
       </Modal>
     </div>
