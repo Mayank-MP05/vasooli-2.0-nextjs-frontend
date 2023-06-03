@@ -8,6 +8,7 @@ import APIClient from "@/utils/api-client";
 import ResponsiveAppBar from "@/components/common/top-navbar";
 const { RxUpdateTheme } = uiControlsActions;
 import Button from "@mui/material/Button";
+import UserAuthModal from "@/components/common/login-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,6 +41,7 @@ export default function Home() {
       <Button color="secondary" onClick={toggleThemeInRedux}>
         MUI Button
       </Button>
+      <UserAuthModal />
     </>
   );
 }
