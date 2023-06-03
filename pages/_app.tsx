@@ -7,6 +7,7 @@ import store from "@/redux/store";
 import { createTheme } from "@mui/material";
 import { green, orange } from "@mui/material/colors";
 import { ThemeProvider } from "@emotion/react";
+import CommonLayout from "@/components/common/common-layout";
 declare module "@mui/material/styles" {
   interface Theme {
     status: {
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
+        <CommonLayout />
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>

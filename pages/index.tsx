@@ -9,6 +9,8 @@ import ResponsiveAppBar from "@/components/common/top-navbar";
 const { RxUpdateTheme } = uiControlsActions;
 import Button from "@mui/material/Button";
 import UserAuthModal from "@/components/common/login-modal";
+import { Container, Pagination, Box } from "@mui/material";
+import TransactionCard from "@/components/transactions/transaction-card";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,11 +39,19 @@ export default function Home() {
       </Head>
 
       <ResponsiveAppBar />
-      <button onClick={toggleThemeInRedux}> Toggle Theme </button>
+      {/* <button onClick={toggleThemeInRedux}> Toggle Theme </button>
       <Button color="secondary" onClick={toggleThemeInRedux}>
         MUI Button
-      </Button>
+      </Button> */}
       <UserAuthModal />
+
+      <Container style={{ marginTop: "10px" }}>
+        <Pagination count={10} />
+
+        <Box style={{ marginTop: "10px" }}>
+          <TransactionCard />
+        </Box>
+      </Container>
     </>
   );
 }

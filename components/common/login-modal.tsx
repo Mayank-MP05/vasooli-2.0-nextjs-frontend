@@ -22,13 +22,13 @@ const style = {
 };
 
 export default function UserAuthModal() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           {/* <EditProfileBox /> */}

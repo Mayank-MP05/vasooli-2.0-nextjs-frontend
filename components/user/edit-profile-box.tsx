@@ -1,19 +1,7 @@
 import React from "react";
 import { TextField, Typography, Button } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
-
-import { styled } from "@mui/system";
-const CustomFormInput = styled(TextField)`
-  width: 100%;
-  margin: 10px auto;
-`;
-const RowDiv = styled("div")`
-  width: 100%;
-  margin: 10px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import { CustomFormInput, RowDiv } from "../common/styled-base-components";
 
 const EditProfileBox = () => {
   return (
