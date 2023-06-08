@@ -21,7 +21,7 @@ const CommonLayout = () => {
   return (
     <>
       {isLoading ? (
-        <div style={parentDivStyles}>{/* <CircularProgress /> */}</div>
+        <div style={parentDivStyles}><CircularProgress /></div>
       ) : (
         ""
       )}
