@@ -4,6 +4,7 @@ import { CustomFormInput, RowDiv } from "../common/styled-base-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 import APIClient from "@/utils/api-client";
+import { validateEmail } from "@/utils/validations";
 
 const LogInBox = () => {
   // Redux Hooks Here
@@ -63,8 +64,8 @@ const LogInBox = () => {
       route: "/user/login",
       method: "POST",
       payload: {
-        email: "",
-        password: "",
+        email: emailId,
+        password: password,
       },
       headers: {},
       successFn: (res) => {
