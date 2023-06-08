@@ -5,6 +5,7 @@ import { CustomFormInput, RowDiv } from "../common/styled-base-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 import APIClient from "@/utils/api-client";
+import { validateEmail } from "@/utils/validations";
 
 const SignUpBox = () => {
   // Redux Hooks Here
@@ -98,24 +99,6 @@ const SignUpBox = () => {
     }
   }
 
-  /**
-   * Validates an email address using a regular expression.
-   * @param {string} mail - The email address to be validated.
-   * @returns {boolean} - Returns true if the email address is valid, false otherwise.
-   */
-  const validateEmail = (mail: string): boolean => {
-    // The regular expression used to validate the email address.
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-    // Test the email address against the regular expression.
-    if (emailRegex.test(mail)) {
-      // If the email address is valid, return true.
-      return true;
-    }
-
-    // If the email address is invalid, return false.
-    return false;
-  };
 
 
   const signUpBtnClickHandler = () => {
