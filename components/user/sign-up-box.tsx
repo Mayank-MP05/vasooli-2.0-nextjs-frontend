@@ -2,8 +2,23 @@ import React from "react";
 import { TextField, Typography, Button, Link } from "@mui/material";
 
 import { CustomFormInput, RowDiv } from "../common/styled-base-components";
+import { useDispatch, useSelector } from "react-redux";
+import { RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 
 const SignUpBox = () => {
+  const dispatch = useDispatch();
+  const {
+    isOpen,
+    userModalEnumToShow,
+  } = useSelector((state) => state.uiControls.userModal);
+
+  const moveTLoginBox = () => {
+    dispatch(RxUpdateUserModal({
+      isOpen: true,
+      userModalEnumToShow: "LOGIN",
+    }));
+  }
+
   return (
     <>
       <Typography variant="h4" component="p" style={{ marginBottom: "10px" }}>
@@ -16,7 +31,7 @@ const SignUpBox = () => {
         <Button variant="contained">Sign Up</Button>
       </RowDiv>
       <RowDiv>
-        <Button variant="text">Already have an account</Button>
+        <Button variant="text" onClick={moveTLoginBox}>Already have an account</Button>
       </RowDiv>
     </>
   );

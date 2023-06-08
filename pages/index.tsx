@@ -75,7 +75,7 @@ export default function Home() {
   };
 
   const themeColorString: string = useSelector((state: any) => state.uiControls.theme);
-  
+
   // DOCS: MUI Imports
   const theme = createTheme({
     status: {
@@ -87,10 +87,6 @@ export default function Home() {
       },
     },
   });
-
-  useEffect(() => {
-    console.log("themeColorString", themeColorString);
-  }, [themeColorString]);
 
 
   return (

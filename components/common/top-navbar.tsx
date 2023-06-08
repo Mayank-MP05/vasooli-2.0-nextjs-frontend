@@ -19,7 +19,7 @@ import Image from "next/image";
 import { FormControl, InputLabel, Select } from "@mui/material";
 import { getColorsStrArray, toTitleCase } from "@/utils/color-str-to-obj-mapper";
 import { useDispatch } from "react-redux";
-import { RxUpdateTheme } from "@/redux/ui-controls-reducer";
+import { RxUpdateTheme, RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 
 const settings = ["Logout"];
 
@@ -76,7 +76,10 @@ function ResponsiveAppBar() {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    dispatch(RxUpdateUserModal({
+      isOpen: true,
+      userModalEnumToShow: "LOGIN"
+    }));
   };
 
   const handleCloseNavMenu = () => {
@@ -169,28 +172,6 @@ function ResponsiveAppBar() {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>

@@ -7,6 +7,8 @@ import Modal from "@mui/material/Modal";
 import EditProfileBox from "../user/edit-profile-box";
 import LogInBox from "../user/login-box";
 import SignUpBox from "../user/sign-up-box";
+import { useDispatch, useSelector } from "react-redux";
+import { RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 
 const style = {
   position: "absolute" as "absolute",
@@ -22,18 +24,37 @@ const style = {
 };
 
 export default function UserAuthModal() {
-  const [open, setOpen] = React.useState(0);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
+  const {
+    isOpen,
+    userModalEnumToShow,
+  } = useSelector((state) => state.uiControls.userModal);
+
+  const handleOpen = () => {
+    dispatch(RxUpdateUserModal({
+      isOpen: true,
+      userModalEnumToShow: "LOGIN",
+    }));
+  }
+  const handleClose = () => {
+    dispatch(RxUpdateUserModal({
+      isOpen: false,
+      userModalEnumToShow: "NONE",
+    }));
+  }
 
   return (
     <div>
       <Button onClick={handleOpen}>User Auth Modal</Button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={isOpen} onClose={handleClose}>
         <Box sx={style}>
-          <EditProfileBox />
-          {/* <LogInBox /> */}
-          {/* <SignUpBox /> */}
+          {userModalEnumToShow === "EDIT_PROFILE" ? (
+            <EditProfileBox />
+          ) : userModalEnumToShow === "LOGIN" ? (
+            <LogInBox />
+          ) : userModalEnumToShow === "SIGN_UP" ? (
+            <SignUpBox />
+          ) : ""}
         </Box>
       </Modal>
     </div>
