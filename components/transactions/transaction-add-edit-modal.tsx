@@ -37,7 +37,7 @@ const style = {
 };
 
 export default function TransactionAddEditModal() {
-  const [open, setOpen] = React.useState(1);
+  const [open, setOpen] = React.useState(0);
   const [selected, setSelected] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

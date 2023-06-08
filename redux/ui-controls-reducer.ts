@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const uiControlsSlice = createSlice({
   name: "uiControls",
   initialState: {
-    theme: "light",
+    theme: "green",
   },
   reducers: {
     RxUpdateTheme: (state, action) => {
@@ -13,5 +13,9 @@ const uiControlsSlice = createSlice({
 });
 
 export default uiControlsSlice;
+
+export const {
+  RxUpdateTheme,
+} = uiControlsSlice.actions;
 
 export const uiControlsActions = uiControlsSlice.actions;

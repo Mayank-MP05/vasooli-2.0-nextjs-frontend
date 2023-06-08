@@ -16,8 +16,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Image from "next/image";
+import { FormControl, InputLabel, Select } from "@mui/material";
+import { getColorsStrArray } from "@/utils/color-str-to-obj-mapper";
+import { useDispatch } from "react-redux";
+import { RxUpdateTheme } from "@/redux/ui-controls-reducer";
 
-const pages = [];
 const settings = ["Logout"];
 
 const Search = styled("div")(({ theme }) => ({
@@ -63,8 +66,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function ResponsiveAppBar() {
+  const dispatch = useDispatch();
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [currentTheme, setCurrentTheme] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -81,11 +87,14 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleThemeChange = (themeStr: string) => (e: any) => {
+    dispatch(RxUpdateTheme(themeStr));
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Image
             src="/images/vasooli-bhai-logo.png"
             alt="logo"
@@ -120,30 +129,7 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -162,21 +148,25 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Vasooli Money Manager 💰
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
 
-          <Box sx={{ display: "flex", flexGrow: 0, flexDirection: "row" }}>
+          <Box sx={{ display: "flex", flexGrow: 0, flexDirection: "row", marginLeft: "auto" }}>
+            <FormControl>
+              <InputLabel id="color-picker">Theme</InputLabel>
+              <Select
+                labelId="color-picker"
+                id="color-picker-select"
+                value={currentTheme}
+                label="Theme"
+              >
+                {
+                  getColorsStrArray().map((color: string) => {
+                    return <MenuItem value={color} onClick={handleThemeChange(color)}>{color}</MenuItem>
+                  })
+                }
+              </Select>
+            </FormControl>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

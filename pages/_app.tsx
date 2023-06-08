@@ -2,10 +2,31 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 // DOCS: Redux related imports
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "@/redux/store";
 import { createTheme } from "@mui/material";
-import { green, orange } from "@mui/material/colors";
+import {
+  amber,
+  blue,
+  blueGrey,
+  brown,
+  common,
+  cyan,
+  deepOrange,
+  deepPurple,
+  green,
+  grey,
+  indigo,
+  lightBlue,
+  lightGreen,
+  lime,
+  orange,
+  pink,
+  purple,
+  red,
+  teal,
+  yellow
+} from "@mui/material/colors";
 import { ThemeProvider } from "@emotion/react";
 import CommonLayout from "@/components/common/common-layout";
 declare module "@mui/material/styles" {
@@ -21,25 +42,17 @@ declare module "@mui/material/styles" {
     };
   }
 }
-// DOCS: MUI Imports
-const theme = createTheme({
-  status: {
-    danger: orange[500],
-  },
-  palette: {
-    primary: {
-      main: green[500],
-    },
-  },
-});
+
+
 
 export default function App({ Component, pageProps }: AppProps) {
+
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CommonLayout />
-        <Component {...pageProps} />
-      </ThemeProvider>
+
+      <CommonLayout />
+      <Component {...pageProps} />
+
     </Provider>
   );
 }
