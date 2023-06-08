@@ -63,7 +63,7 @@ export const colorStrToObjMapper: any = (colorStr: string) => {
  * @returns {Array<string>} - An array of all the color strings available in the Material UI color library.
  */
 export const getColorsStrArray: any = () => {
-    return Object.keys(colorsObjectOfObject).map(colorName => toTitleCase(colorName));
+    return Object.keys(colorsObjectOfObject).map(colorName => colorName);
 }
 
 /**
@@ -71,10 +71,10 @@ export const getColorsStrArray: any = () => {
  * @param {string} str - The string to convert to title case.
  * @returns {string} - The title case version of the input string.
  */
-const toTitleCase = (str) => {
+export const toTitleCase = (str: string) => {
     return str.replace(
         /\w\S*/g,
-        function (txt) {
+        function (txt: string) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         }
     );

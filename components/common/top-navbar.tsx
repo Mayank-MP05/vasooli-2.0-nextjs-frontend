@@ -17,7 +17,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Image from "next/image";
 import { FormControl, InputLabel, Select } from "@mui/material";
-import { getColorsStrArray } from "@/utils/color-str-to-obj-mapper";
+import { getColorsStrArray, toTitleCase } from "@/utils/color-str-to-obj-mapper";
 import { useDispatch } from "react-redux";
 import { RxUpdateTheme } from "@/redux/ui-controls-reducer";
 
@@ -118,20 +118,6 @@ function ResponsiveAppBar() {
             Vasooli Money Manager 💰
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -141,32 +127,34 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "poppins",
               fontWeight: 700,
-              letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
             Vasooli Money Manager 💰
           </Typography>
+          <FormControl style={{ width: '80px', marginLeft: 'auto', marginRight: 0 }}>
+            <InputLabel id="color-picker">Theme</InputLabel>
+            <Select
+              labelId="color-picker"
+              id="color-picker-select"
+              value={currentTheme}
+              label="Theme"
+            >
+              {
+                getColorsStrArray().map((color: string) => {
+                  return <MenuItem value={color} onClick={handleThemeChange(color)}>{toTitleCase(color)}</MenuItem>
+                })
+              }
+            </Select>
+          </FormControl>
+          <Box sx={{
+            display: "flex", flexGrow: 0
+            , flexDirection: "row",
+          }}>
 
-          <Box sx={{ display: "flex", flexGrow: 0, flexDirection: "row", marginLeft: "auto" }}>
-            <FormControl>
-              <InputLabel id="color-picker">Theme</InputLabel>
-              <Select
-                labelId="color-picker"
-                id="color-picker-select"
-                value={currentTheme}
-                label="Theme"
-              >
-                {
-                  getColorsStrArray().map((color: string) => {
-                    return <MenuItem value={color} onClick={handleThemeChange(color)}>{color}</MenuItem>
-                  })
-                }
-              </Select>
-            </FormControl>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

@@ -75,7 +75,7 @@ export default function Home() {
   };
 
   const themeColorString: string = useSelector((state: any) => state.uiControls.theme);
-  console.log("themeColorString", themeColorString)
+  
   // DOCS: MUI Imports
   const theme = createTheme({
     status: {
@@ -103,13 +103,9 @@ export default function Home() {
       </Head>
       <ThemeProvider theme={theme}>
         <ResponsiveAppBar />
-        {/* <button onClick={toggleThemeInRedux}> Toggle Theme </button>
-      <Button color="secondary" onClick={toggleThemeInRedux}>
-        MUI Button
-      </Button> */}
-        <UserAuthModal />
 
         <Container style={{ marginTop: "10px" }}>
+          <UserAuthModal />
           <ConfirmDeleteModal />
           <TransactionAddEditModal />
           <RowDiv>

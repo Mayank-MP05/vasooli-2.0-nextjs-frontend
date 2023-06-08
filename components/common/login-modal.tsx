@@ -28,7 +28,7 @@ export default function UserAuthModal() {
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
+      <Button onClick={handleOpen}>User Auth Modal</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <EditProfileBox />
