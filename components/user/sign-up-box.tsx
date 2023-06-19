@@ -74,6 +74,9 @@ const SignUpBox = () => {
             emailId: registerApiResponse.email_id,
             authorization: registerApiResponse.authorization,
             isUserLoggedIn: true,
+            fullName: registerApiResponse.full_name,
+            mobileNo: registerApiResponse.mobile_no,
+            username: registerApiResponse.username,
           }));
 
           // Close the modal

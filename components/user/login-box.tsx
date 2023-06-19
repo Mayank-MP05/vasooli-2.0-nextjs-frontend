@@ -97,6 +97,9 @@ const LogInBox = () => {
             emailId: loginApiResponse.email_id,
             authorization: loginApiResponse.authorization,
             isUserLoggedIn: true,
+            fullName: loginApiResponse.full_name,
+            mobileNo: loginApiResponse.mobile_no,
+            username: loginApiResponse.username,
           }));
 
           // Close the modal
