@@ -3,12 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const userAuthSlice = createSlice({
   name: "userAuth",
   initialState: {
-    userDetails: {}
+    customerId: "",
+    authorization: "",
+    emailId: "",
+    isUserLoggedIn: false,
   },
   reducers: {
     RxUpdateUserCredentials: (state, action) => {
-      const { customer_id, authorization, username } = action.payload;
-      state.userDetails = { customer_id, authorization, username }
+      const { customerId, authorization, emailId, isUserLoggedIn } = action.payload;
+      state.customerId = customerId;
+      state.authorization = authorization;
+      state.emailId = emailId;
+      state.isUserLoggedIn = isUserLoggedIn;
     }
   },
 });

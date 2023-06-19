@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 import APIClient from "@/utils/api-client";
 import { validateEmail } from "@/utils/validations";
+import { RxUpdateUserCredentials } from "@/redux/user-auth-reducer";
 
 const LogInBox = () => {
   // Redux Hooks Here
@@ -28,6 +29,8 @@ const LogInBox = () => {
     errMsg: "",
   });
 
+  const [apiLoading, setApiLoading] = useState(false);
+
   const moveToSignUpBox = () => {
     dispatch(RxUpdateUserModal({
       isOpen: true,
@@ -46,24 +49,7 @@ const LogInBox = () => {
     }
 
     // If valid, call the API
-    APIClient({
-      route: "/user/login",
-      method: "POST",
-      payload: {
-        email: emailId,
-        password: password,
-      },
-      headers: {},
-      successFn: (res: any) => {
-        // If API call is successful, close the modal
-        console.log(res);
-      },
-      errorFn: (err: any) => {
-        // If API call is unsuccessful, show the error message
-        console.log(err);
-      },
-      finallyFn: () => { },
-    })
+    loginAPICall();
   }
 
   const inputFieldChangeHandler = (inputType: string) => (e: any) => {
@@ -91,6 +77,7 @@ const LogInBox = () => {
   }
 
   const loginAPICall = () => {
+    setApiLoading(true);
     APIClient({
       route: "/user/login",
       method: "POST",
@@ -99,13 +86,40 @@ const LogInBox = () => {
         password: password,
       },
       headers: {},
-      successFn: (res) => {
-        console.log(res);
+      successFn: (res: any) => {
+        // If API call is successful, close the modal
+        console.log(res.data);
+        const loginApiResponse = res.data;
+        if (loginApiResponse.statusCode === 2000) {
+          // Update the user credentials in the redux store
+          dispatch(RxUpdateUserCredentials({
+            customerId: loginApiResponse.customer_id,
+            emailId: loginApiResponse.email_id,
+            authorization: loginApiResponse.authorization,
+            isUserLoggedIn: true,
+          }));
+
+          // Close the modal
+          dispatch(RxUpdateUserModal({
+            isOpen: false,
+            userModalEnumToShow: "NONE",
+          }));
+        } else {
+          // Show the error message
+          setEmailIdErrMsg({
+            isError: true,
+            errMsg: loginApiResponse.message,
+          });
+        }
       },
-      errorFn: (err) => {
+      errorFn: (err: any) => {
+        // If API call is unsuccessful, show the error message
         console.log(err);
       },
-      finallyFn: () => { },
+      finallyFn: () => {
+        // Reset the loading state
+        setApiLoading(false);
+      },
     })
   }
 

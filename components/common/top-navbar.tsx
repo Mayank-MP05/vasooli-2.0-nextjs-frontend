@@ -18,7 +18,7 @@ import InputBase from "@mui/material/InputBase";
 import Image from "next/image";
 import { FormControl, InputLabel, Select } from "@mui/material";
 import { getColorsStrArray, toTitleCase } from "@/utils/color-str-to-obj-mapper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RxUpdateTheme, RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 
 const settings = ["Logout"];
@@ -67,6 +67,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function ResponsiveAppBar() {
   const dispatch = useDispatch();
+  const {
+    isUserLoggedIn,
+  } = useSelector((state) => state.userAuth);
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -75,11 +78,19 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    dispatch(RxUpdateUserModal({
-      isOpen: true,
-      userModalEnumToShow: "LOGIN"
-    }));
+    if (isUserLoggedIn) {
+      dispatch(RxUpdateUserModal({
+        isOpen: true,
+        userModalEnumToShow: "EDIT_PROFILE",
+      }));
+    } else {
+      dispatch(RxUpdateUserModal({
+        isOpen: true,
+        userModalEnumToShow: "LOGIN",
+      }));
+    }
   };
 
   const handleCloseNavMenu = () => {

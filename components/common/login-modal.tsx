@@ -43,6 +43,7 @@ export default function UserAuthModal() {
     }));
   }
 
+
   return (
     <div>
       <Button onClick={handleOpen}>User Auth Modal</Button>

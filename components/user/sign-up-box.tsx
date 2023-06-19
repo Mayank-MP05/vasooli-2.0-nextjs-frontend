@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RxUpdateUserModal } from "@/redux/ui-controls-reducer";
 import APIClient from "@/utils/api-client";
 import { validateEmail } from "@/utils/validations";
+import { CircularProgress } from '@mui/material';
+import { RxUpdateUserCredentials } from "@/redux/user-auth-reducer";
 
 const SignUpBox = () => {
   // Redux Hooks Here
@@ -35,6 +37,7 @@ const SignUpBox = () => {
     errMsg: "",
   });
 
+  const [apiLoading, setApiLoading] = useState(false);
 
   /**
    * Update the user modal to show the login box
@@ -50,22 +53,48 @@ const SignUpBox = () => {
    * API Call to register a new user
    */
   const SignUpAPICall = () => {
+    setApiLoading(true);
     APIClient({
       route: "/user/register",
       method: "POST",
       payload: {
-        email: "two@mail.com",
-        password: "twopass",
-        confirmPassword: "User Two",
+        email: emailId,
+        password: password,
+        confirmPassword: confirmPassword,
       },
       headers: {},
       successFn: (res) => {
-        console.log(res);
+        const registerApiResponse = res.data;
+        const regiserApiResponseStatus = registerApiResponse.statusCode;
+
+        if (regiserApiResponseStatus === 2000) {
+          // Update the user credentials in the redux store
+          dispatch(RxUpdateUserCredentials({
+            customerId: registerApiResponse.customer_id,
+            emailId: registerApiResponse.email_id,
+            authorization: registerApiResponse.authorization,
+            isUserLoggedIn: true,
+          }));
+
+          // Close the modal
+          dispatch(RxUpdateUserModal({
+            isOpen: false,
+            userModalEnumToShow: "NONE",
+          }));
+        } else {
+          // Show the error message
+          setEmailIdErrMsg({
+            isError: true,
+            errMsg: registerApiResponse.message,
+          });
+        }
       },
       errorFn: (err) => {
         console.log(err);
       },
-      finallyFn: () => { },
+      finallyFn: () => {
+        setApiLoading(false);
+      },
     })
   }
 
@@ -158,7 +187,7 @@ const SignUpBox = () => {
         onChange={inputFieldChangeHandler("confirmPassword")}
       />
       <RowDiv>
-        <Button variant="contained" onClick={signUpBtnClickHandler}>Sign Up</Button>
+        <Button variant="contained" onClick={signUpBtnClickHandler} disabled={apiLoading}>{apiLoading ? <CircularProgress size={30} /> : "Sign Up"}</Button>
       </RowDiv>
       <RowDiv>
         <Button variant="text" onClick={moveTLoginBox}>Already have an account</Button>
