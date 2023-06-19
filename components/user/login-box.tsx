@@ -35,6 +35,37 @@ const LogInBox = () => {
     }));
   }
 
+  const loginButtonClicked = () => {
+    // Validate the input fields
+    if (!validateEmail(emailId)) {
+      setEmailIdErrMsg({
+        isError: true,
+        errMsg: "Please enter a valid email ID",
+      });
+      return;
+    }
+
+    // If valid, call the API
+    APIClient({
+      route: "/user/login",
+      method: "POST",
+      payload: {
+        email: emailId,
+        password: password,
+      },
+      headers: {},
+      successFn: (res: any) => {
+        // If API call is successful, close the modal
+        console.log(res);
+      },
+      errorFn: (err: any) => {
+        // If API call is unsuccessful, show the error message
+        console.log(err);
+      },
+      finallyFn: () => { },
+    })
+  }
+
   const inputFieldChangeHandler = (inputType: string) => (e: any) => {
     switch (inputType) {
       case "emailId":

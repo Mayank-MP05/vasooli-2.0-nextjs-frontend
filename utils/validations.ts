@@ -4,6 +4,7 @@
  * @returns {boolean} - Returns true if the email address is valid, false otherwise.
  */
 export const validateEmail = (mail: string): boolean => {
+    if (!mail) return false;
     // The regular expression used to validate the email address.
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
